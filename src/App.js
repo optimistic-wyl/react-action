@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Add_Gun,Remove_Gun,Add_Gun_Async } from './reducer'
 
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 
 import Login from './container/login'
 import Register from './container/register'
@@ -25,6 +25,8 @@ class App extends React.Component {
                 <button onClick={this.props.Add_Gun}>++机关枪++</button>
                 <button onClick={this.props.Remove_Gun}>--机关枪--</button>
                 <button onClick={this.props.Add_Gun_Async}>过2秒还</button>
+                <p><Link to="/Register">Register</Link></p>
+                <p><Link to="/login">login</Link></p>
                 <Route path="/Register" component={Register}></Route>
                 <Route path="/login" component={Login}></Route>
             </div>

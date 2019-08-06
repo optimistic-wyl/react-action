@@ -1,3 +1,4 @@
+import { Toast } from 'antd-mobile'
 const add_Gun = "Add_Gun"
 const remove_Gun = "Remove_Gun"
 
@@ -30,9 +31,11 @@ export function Remove_Gun(){
 
 // 异步加载，并且可以返回一个函数了。
 export function Add_Gun_Async(){
+  Toast.loading('加载中', 0)
   return dispatch=>{
       setTimeout(()=>{
-          dispatch(Add_Gun())
+        Toast.hide();
+        dispatch(Add_Gun())
       },2000)
   }
 }
