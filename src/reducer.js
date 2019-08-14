@@ -1,6 +1,7 @@
 import { Toast } from 'antd-mobile'
 const add_Gun = "Add_Gun"
 const remove_Gun = "Remove_Gun"
+const timeout_Test = "Timeout_Test"
 
 const initialState = {
     isAuth: false,
@@ -10,12 +11,14 @@ const initialState = {
 
 export default function counter(state=initialState,action){
   switch(action.type){
-      case 'Add_Gun':
+      case add_Gun:
           state.ct++
           return Object.assign({},state)
-      case 'Remove_Gun':
-            state.ct--
-            return Object.assign({},state)
+      case remove_Gun:
+          state.ct--
+          return Object.assign({},state)
+      case timeout_Test:
+          return Object.assign({},state)
       default :
           return state
   }
@@ -28,6 +31,14 @@ export function Add_Gun(){
 export function Remove_Gun(){
   return {type:remove_Gun}
 }
+
+export function Timeout_Test(payload){
+  return {
+    type: timeout_Test,
+    meta: payload
+  }
+}
+
 
 /**
  * 异步加载，并且可以返回一个函数了。

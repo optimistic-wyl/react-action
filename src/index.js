@@ -16,8 +16,23 @@ import * as serviceWorker from './serviceWorker';
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
+const timeoutScheduler = store => next => action => {
+    if (!action.meta || !action.meta.delay) {
+      return next(action)
+    }
+  
+    let timeoutId = setTimeout(
+      () => next(action),
+      action.meta.delay
+    )
+  
+    return function cancel() {
+      clearTimeout(timeoutId)
+    }
+}
+
 const store = createStore(reducers, compose(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk, timeoutScheduler),
     window.devToolsExtension ? window.devToolsExtension() : f => f
 ))
 
